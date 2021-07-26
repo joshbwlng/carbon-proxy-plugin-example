@@ -1,7 +1,7 @@
 {
   "name": "carbon-proxy-plugin-example",
-  "version": "0.0.3",
-  "private": true,
+  "version": "0.0.4",
+  "private": false,
   "description": "Example plugin for Carbon Proxy",
   "engines": {
     "node": ">=14.17.0"

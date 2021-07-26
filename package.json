@@ -1,0 +1,67 @@
+{
+  "name": "carbon-proxy-plugin-example",
+  "version": "0.0.2",
+  "private": true,
+  "description": "Example plugin for Carbon Proxy",
+  "engines": {
+    "node": ">=14.17.0"
+  },
+  "author": "Josh Bowling <josh@balena.io>",
+  "license": "UNLICENSED",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "files": [
+    "build/"
+  ],
+  "directories": {
+    "lib": "lib"
+  },
+  "deplint": {
+    "files": [
+      "lib/**/*.{ts}"
+    ],
+    "modules": [
+      "lib"
+    ]
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "balena-lint --fix"
+    ]
+  },
+  "scripts": {
+    "clean": "rimraf build",
+    "build": "npm run clean && tsc -p tsconfig.build.json",
+    "lint": "balena-lint lib test && depcheck --ignore-bin-package --ignores=depcheck,@types/jest,nodemon",
+    "lint-fix": "balena-lint --fix lib test",
+    "unit": "jest",
+    "test": "npm run lint && npm run unit",
+    "doc": "typedoc lib/",
+    "prepack": "npm run build",
+    "start": "node build/",
+    "dev": "nodemon --config nodemon.json lib/index.ts"
+  },
+  "dependencies": {
+    "npm": "^7.20.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@balena/lint": "^6.1.1",
+    "@types/jest": "^26.0.24",
+    "@types/node": "^16.4.3",
+    "carbon-proxy": "0.0.3",
+    "catch-uncommitted": "^2.0.0",
+    "depcheck": "^1.4.2",
+    "jest": "^27.0.6",
+    "lint-staged": "^11.1.1",
+    "nodemon": "^2.0.12",
+    "rimraf": "^3.0.2",
+    "simple-git-hooks": "^2.5.1",
+    "ts-jest": "^27.0.3",
+    "ts-node": "^10.1.0",
+    "typescript": "^4.3.5"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  }
+}

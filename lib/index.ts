@@ -1,7 +1,7 @@
 import type { CarbonProxyPlugin } from 'carbon-proxy';
 import * as http from 'http';
 
-export class ExamplePlugin implements CarbonProxyPlugin {
+export default class ExamplePlugin implements CarbonProxyPlugin {
 	public slug = 'example';
 	public filter = {
 		method: 'get',
